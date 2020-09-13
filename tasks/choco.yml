@@ -1,0 +1,5 @@
+---
+- name: choco install
+  win_chocolatey:
+      name: nodejs
+      state: present

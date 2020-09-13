@@ -3,6 +3,7 @@
 node_ver: 14.9.0
 node_os: linux
 node_arch: x64
+node_privilege_escalation: True
 
 node_mirror: https://nodejs.org/dist
 

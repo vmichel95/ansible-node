@@ -1,0 +1,5 @@
+---
+- name: scoop install
+  win_scoop:
+    name: nodejs
+    state: present

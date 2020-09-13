@@ -1,6 +1,6 @@
 ---
 - name: checking for existing install
-  become: yes
+  become: '{{ node_privilege_escalation }}'
   stat:
     path: '{{ node_install_dir }}'
   changed_when: False
@@ -8,7 +8,7 @@
 - when: not node_binary.stat.exists
   block:
     - name: downloading node...
-      become: yes
+      become: '{{ node_privilege_escalation }}'
       become_user: root
       get_url:
         url: '{{ node_tgz_url }}'
@@ -17,7 +17,7 @@
         checksum: '{{ node_checksum }}'
 
     - name: unarchive....
-      become: yes
+      become: '{{ node_privilege_escalation }}'
       become_user: root
       unarchive:
         remote_src: yes
@@ -26,7 +26,7 @@
         creates: '{{ node_install_dir }}'
 
     - name: linking node...
-      become: yes
+      become: '{{ node_privilege_escalation }}'
       become_user: root
       file:
         src: '{{ node_install_dir }}'
@@ -34,14 +34,14 @@
         state: link
   always:
     - name: cleanup...
-      become: yes
+      become: '{{ node_privilege_escalation }}'
       become_user: root
       file:
         path: /tmp/{{ node_tgz }}
         state: absent
 
 - name: adding node to the default path...
-  become: yes
+  become: '{{ node_privilege_escalation }}'
   become_user: root
   with_items:
     - f: node.sh

@@ -1,0 +1,10 @@
+---
+- name: installing NodeJS thru generic OS pkg manager
+  become_user: root
+  become: '{{ node_privilege_escalation }}'
+  with_items: '{{ node_pkg_list | default([]) }}'
+  register: node_installed
+  package:
+    name: '{{ item }}'
+    state: present
+    update_cache: no

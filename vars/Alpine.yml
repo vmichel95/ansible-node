@@ -1,2 +1,5 @@
 ---
-node_installer: apk
+node_pkg_list:
+  - nodejs
+  - npm
+node_installer: pkg

@@ -3,8 +3,3 @@
   homebrew:
     name: node
     state: present
-
-- name: brew link
-  homebrew:
-    name: node
-    state: linked
